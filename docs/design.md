@@ -226,4 +226,4 @@ Se construyen con **shadcn/ui** (Radix + Tailwind), que da accesibilidad y tecla
 - [ ] Logo de Jeff en **SVG** (o PNG blanco) para el modo oscuro y el favicon.
 - [x] Prototipo visual de Inicio, Bandeja y chat en el celular: [Jeff CRM — Prototipo](https://claude.ai/artifact/SiZfSyi6NYE83ud3GAonjp) (2026-11-20, datos de ejemplo). **Aprobado por el usuario.** El código fuente está en [design/prototipo/fuente/](design/prototipo/fuente/) y las referencias en [design/referencias/](design/referencias/).
 - [x] Tokens de texto para estados pasados a §3.
-- [ ] Capturas PNG de las 3 pantallas en `design/prototipo/`.
+- [x] Capturas de las 3 pantallas: [inicio.png](design/prototipo/inicio.png), [bandeja.png](design/prototipo/bandeja.png), [chat-celular.png](design/prototipo/chat-celular.png).
