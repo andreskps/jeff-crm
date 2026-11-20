@@ -60,6 +60,15 @@ Se usan solo en **pastillas, puntos y bordes finos**, nunca como fondo grande. E
 | `--danger` | `#D93636` | Fallido, reclamo, urgente, alerta de presupuesto |
 | `--info` | `#3B6FD9` | Link de pago enviado, en proceso |
 
+Para el **texto** de las pastillas, que debe cumplir el contraste AA, se usan tonos más oscuros sobre fondos tenues. Son los del prototipo aprobado:
+
+| Estado | Texto (claro) | Fondo (claro) | Texto (oscuro) | Fondo (oscuro) |
+|---|---|---|---|---|
+| ok | `#156B3A` | `#E3F3EA` | `#7FD6A2` | `#12301F` |
+| warn | `#7E4C00` | `#FBF0DC` | `#F2C277` | `#33260F` |
+| bad | `#B42323` | `#FBE7E7` | `#F29B9B` | `#3A1616` |
+| info | `#2A55B0` | `#E6EDFB` | `#9DB8F2` | `#152340` |
+
 **IA y humano se distinguen sin color:**
 - **IA**: pastilla con **borde** y el ícono ✦ (`sparkles`); burbuja blanca con borde.
 - **Humano**: pastilla **negra rellena** con avatar; burbuja negra con texto blanco.
@@ -215,5 +224,6 @@ Se construyen con **shadcn/ui** (Radix + Tailwind), que da accesibilidad y tecla
 
 ## 9. Pendientes
 - [ ] Logo de Jeff en **SVG** (o PNG blanco) para el modo oscuro y el favicon.
-- [x] Prototipo visual de Inicio, Bandeja y chat en el celular: [Jeff CRM — Prototipo](https://claude.ai/artifact/SiZfSyi6NYE83ud3GAonjp) (2026-11-20, datos de ejemplo). Falta que el usuario lo valide.
-- [ ] Tokens de texto para estados, usados en el prototipo para cumplir el contraste AA: `--ok #156B3A`, `--warn #7E4C00`, `--bad #B42323`, `--info #2A55B0` sobre fondos tenues (`#E3F3EA`, `#FBF0DC`, `#FBE7E7`, `#E6EDFB`). Pasarlos a la tabla de §3 cuando se apruebe el prototipo.
+- [x] Prototipo visual de Inicio, Bandeja y chat en el celular: [Jeff CRM — Prototipo](https://claude.ai/artifact/SiZfSyi6NYE83ud3GAonjp) (2026-11-20, datos de ejemplo). **Aprobado por el usuario.** El código fuente está en [design/prototipo/fuente/](design/prototipo/fuente/) y las referencias en [design/referencias/](design/referencias/).
+- [x] Tokens de texto para estados pasados a §3.
+- [ ] Capturas PNG de las 3 pantallas en `design/prototipo/`.

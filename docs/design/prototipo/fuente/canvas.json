@@ -1,0 +1,18 @@
+{
+  "v": 3,
+  "createdOnFiles": { "v": 1, "at": "2026-11-20T17:30:00Z" },
+  "title": "Jeff CRM — Prototipo",
+  "launch": { "view": "canvas" },
+  "pages": [],
+  "boards": {
+    "Main.dc.html": { "x": 0, "y": 0, "w": 1440, "h": 1180, "title": "Inicio (escritorio)", "expand": "fill" },
+    "Bandeja.dc.html": { "x": 1520, "y": 0, "w": 1440, "h": 940, "title": "Bandeja (escritorio)", "expand": "fill" },
+    "BandejaMovil.dc.html": { "x": 3040, "y": 0, "w": 390, "h": 844, "title": "Bandeja — chat (celular)" }
+  },
+  "order": ["Main.dc.html", "Bandeja.dc.html", "BandejaMovil.dc.html"],
+  "notes": {
+    "titulo": { "x": 0, "y": -300, "text": "Jeff CRM · prototipo monocromo", "kind": "title1", "maxW": 3430 },
+    "nota": { "x": 3040, "y": 900, "w": 390, "text": "Datos de ejemplo. Logo provisional (falta el SVG oficial). El modo oscuro se activa en Tweaks de cada artboard.", "fill": "gray" }
+  },
+  "designSystems": []
+}

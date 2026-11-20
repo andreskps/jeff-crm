@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Jeff CRM — Bandeja</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#1C1C1C}a:hover{color:#555}
+.jc{--canvas:#F3F2EF;--surface:#FFFEFC;--subtle:#F7F6F3;--border:#E6E4DF;--border-strong:#D4D1CB;--text:#1C1C1C;--muted:#6B6A67;--faint:#8A8884;--primary:#1C1C1C;--primary-fg:#FFFEFC;--ok-bg:#E3F3EA;--ok:#156B3A;--warn-bg:#FBF0DC;--warn:#7E4C00;--bad-bg:#FBE7E7;--bad:#B42323;--info-bg:#E6EDFB;--info:#2A55B0}
+.jc.dark{--canvas:#0E0E0E;--surface:#171717;--subtle:#202020;--border:#2A2A2A;--border-strong:#3A3A3A;--text:#F5F4F1;--muted:#A3A19D;--faint:#8C8A86;--primary:#FFFEFC;--primary-fg:#1C1C1C;--ok-bg:#12301F;--ok:#7FD6A2;--warn-bg:#33260F;--warn:#F2C277;--bad-bg:#3A1616;--bad:#F29B9B;--info-bg:#152340;--info:#9DB8F2}
+</style>
+</helmet>
+<div class="jc {{mode}}" style="min-height: 100vh; background: var(--canvas); color: var(--text); font-family: Inter, system-ui, sans-serif; font-size: 14px; line-height: 20px; display: flex; flex-wrap: wrap; align-items: stretch; gap: 8px; padding: 8px; box-sizing: border-box">
+
+  <nav aria-label="Navegación principal" style="flex: 0 0 56px; display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 8px 0">
+    <a href="Main.dc.html" aria-label="Jeff CRM, ir a Inicio" style="width: 36px; height: 36px; border-radius: 999px; border: 1.5px solid var(--text); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; font-style: italic; text-decoration: none; color: var(--text); background: var(--surface); margin-bottom: 10px">Jeff</a>
+    <sc-for list="{{rail}}" as="r" hint-placeholder-count="6">
+      <a href="{{r.href}}" aria-label="{{r.label}}" style="{{r.style}}">
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="{{r.icon}}"></path></svg>
+      </a>
+    </sc-for>
+    <div style="flex-grow: 1"></div>
+    <span aria-hidden="true" style="width: 34px; height: 34px; border-radius: 999px; background: var(--primary); color: var(--primary-fg); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600">AR</span>
+  </nav>
+
+  <section aria-label="Conversaciones" style="flex: 1 1 300px; max-width: 340px; min-width: 260px; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; display: flex; flex-direction: column; overflow: hidden">
+    <div style="padding: 16px 16px 12px; display: flex; flex-direction: column; gap: 12px; border-bottom: 1px solid var(--border)">
+      <div style="display: flex; align-items: center; justify-content: space-between">
+        <h1 style="margin: 0; font-size: 17px; line-height: 24px; font-weight: 600">Bandeja</h1>
+        <span style="font-size: 12px; color: var(--muted)">12 sin leer</span>
+      </div>
+      <label style="display: flex; align-items: center; gap: 8px; height: 38px; padding: 0 10px; border-radius: 10px; background: var(--subtle); border: 1px solid var(--border); color: var(--muted)">
+        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16z M21 21l-4.35-4.35"></path></svg>
+        <input type="search" placeholder="Buscar cliente o mensaje" aria-label="Buscar conversación" style="border: 0; outline: 0; background: transparent; flex-grow: 1; min-width: 0; font: inherit; color: var(--text)">
+      </label>
+      <div role="tablist" aria-label="Filtro" style="display: flex; flex-wrap: wrap; gap: 6px">
+        <sc-for list="{{filters}}" as="f" hint-placeholder-count="4">
+          <button type="button" role="tab" aria-selected="{{f.sel}}" style="{{f.style}}">{{f.label}}</button>
+        </sc-for>
+      </div>
+    </div>
+    <div style="display: flex; flex-direction: column; overflow-y: auto">
+      <sc-for list="{{convs}}" as="c" hint-placeholder-count="6">
+        <a href="#" style="{{c.rowStyle}}">
+          <span aria-hidden="true" style="width: 38px; height: 38px; flex-shrink: 0; border-radius: 999px; background: var(--subtle); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; position: relative">{{c.ini}}
+            <span style="position: absolute; right: -3px; bottom: -3px; width: 18px; height: 18px; border-radius: 999px; background: var(--surface); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="{{c.channelIcon}}"></path></svg>
+            </span>
+          </span>
+          <span style="display: flex; flex-direction: column; gap: 3px; flex-grow: 1; min-width: 0">
+            <span style="display: flex; align-items: center; gap: 6px">
+              <span style="font-weight: 600; flex-grow: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{c.name}}</span>
+              <span style="font-size: 12px; color: var(--muted)">{{c.time}}</span>
+            </span>
+            <span style="font-size: 13px; line-height: 18px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{c.preview}}</span>
+            <span style="display: flex; flex-wrap: wrap; gap: 4px">
+              <sc-for list="{{c.tags}}" as="t" hint-placeholder-count="1">
+                <span style="{{t.style}}">{{t.label}}</span>
+              </sc-for>
+            </span>
+          </span>
+          <sc-if value="{{c.unread}}" hint-placeholder-val="{{false}}">
+            <span aria-label="Sin leer" style="width: 8px; height: 8px; border-radius: 999px; background: var(--text); flex-shrink: 0; margin-top: 6px"></span>
+          </sc-if>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+
+  <section aria-label="Conversación con Laura Gómez" style="flex: 999 1 480px; min-width: 0; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; display: flex; flex-direction: column; overflow: hidden">
+    <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 14px 20px 0">
+      <span aria-hidden="true" style="width: 36px; height: 36px; border-radius: 999px; background: var(--subtle); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600">LG</span>
+      <div style="display: flex; flex-direction: column; flex-grow: 1; min-width: 0">
+        <span style="font-weight: 600; font-size: 15px">Laura Gómez</span>
+        <span style="font-size: 12px; line-height: 16px; color: var(--muted); display: flex; align-items: center; gap: 4px">
+          <svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"></path></svg>WhatsApp · +57 300 ••• 4821
+        </span>
+      </div>
+      <span style="font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 999px; border: 1px solid var(--border-strong)">✦ Atiende la IA</span>
+      <button type="button" aria-label="Más opciones" style="width: 36px; height: 36px; border-radius: 10px; border: 1px solid var(--border); background: var(--surface); color: var(--text); display: flex; align-items: center; justify-content: center">
+        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2z M19 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2z M5 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"></path></svg>
+      </button>
+      <button type="button" style="height: 36px; padding: 0 16px; border-radius: 999px; border: 0; background: var(--primary); color: var(--primary-fg); font: inherit; font-weight: 600">Cerrar</button>
+    </div>
+    <div role="tablist" aria-label="Secciones de la conversación" style="display: flex; gap: 20px; padding: 0 20px; border-bottom: 1px solid var(--border); margin-top: 10px">
+      <button type="button" role="tab" aria-selected="true" style="height: 40px; border: 0; background: transparent; font: inherit; font-weight: 600; color: var(--text); border-bottom: 2px solid var(--text); padding: 0">Conversación</button>
+      <button type="button" role="tab" aria-selected="false" style="height: 40px; border: 0; background: transparent; font: inherit; color: var(--muted); padding: 0">Seguimientos</button>
+      <button type="button" role="tab" aria-selected="false" style="height: 40px; border: 0; background: transparent; font: inherit; color: var(--muted); padding: 0">Notas</button>
+      <button type="button" role="tab" aria-selected="false" style="height: 40px; border: 0; background: transparent; font: inherit; color: var(--muted); padding: 0">Actividad</button>
+    </div>
+
+    <div style="flex-grow: 1; padding: 20px; display: flex; flex-direction: column; gap: 18px; overflow-y: auto">
+      <span style="align-self: center; font-size: 12px; color: var(--muted); padding: 2px 10px; border-radius: 999px; background: var(--subtle); border: 1px solid var(--border)">Hoy</span>
+      <sc-for list="{{msgs}}" as="m" hint-placeholder-count="4">
+        <div style="display: flex; gap: 10px; align-items: flex-start">
+          <span aria-hidden="true" style="{{m.avStyle}}">{{m.av}}</span>
+          <div style="display: flex; flex-direction: column; gap: 4px; min-width: 0; flex-grow: 1">
+            <span style="font-size: 12px; line-height: 16px; color: var(--muted)"><strong style="color: var(--text); font-weight: 600">{{m.who}}</strong> · {{m.time}} · vía WhatsApp</span>
+            <div style="{{m.bubble}}">{{m.text}}</div>
+            <sc-if value="{{m.transcript}}" hint-placeholder-val="{{false}}">
+              <span style="font-size: 12px; line-height: 16px; color: var(--muted)">Nota de voz 0:14 · transcrita</span>
+            </sc-if>
+          </div>
+        </div>
+      </sc-for>
+
+      <div style="display: flex; gap: 10px; align-items: flex-start">
+        <span aria-hidden="true" style="width: 30px; height: 30px; flex-shrink: 0; border-radius: 999px; border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-size: 12px">✦</span>
+        <div style="display: flex; flex-direction: column; gap: 4px; flex-grow: 1; min-width: 0; max-width: 520px">
+          <span style="font-size: 12px; line-height: 16px; color: var(--muted)"><strong style="color: var(--text); font-weight: 600">Sara (asistente)</strong> · 11:14 · vía WhatsApp</span>
+          <div style="border: 1px solid var(--border); border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 12px; background: var(--surface)">
+            <div style="display: flex; align-items: center; justify-content: space-between">
+              <span style="font-weight: 600">Pedido #D-1043</span>
+              <span style="font-size: 11px; font-weight: 600; padding: 1px 8px; border-radius: 999px; background: var(--info-bg); color: var(--info)">Link enviado</span>
+            </div>
+            <span style="font-size: 13px; color: var(--muted)">Total <strong style="color: var(--text); font-size: 15px">$158.000</strong> · envío gratis</span>
+            <ol aria-label="Etapas del pedido" style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); font-size: 12px">
+              <sc-for list="{{stages}}" as="s" hint-placeholder-count="4">
+                <li style="display: flex; flex-direction: column; gap: 6px; align-items: flex-start">
+                  <span style="display: flex; align-items: center; width: 100%">
+                    <span aria-hidden="true" style="{{s.dot}}"></span>
+                    <span aria-hidden="true" style="{{s.line}}"></span>
+                  </span>
+                  <span style="{{s.labelStyle}}">{{s.label}}</span>
+                </li>
+              </sc-for>
+            </ol>
+            <div style="display: flex; align-items: center; gap: 10px; border-top: 1px solid var(--border); padding-top: 10px">
+              <span aria-hidden="true" style="width: 40px; height: 40px; border-radius: 8px; background: var(--subtle); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; color: var(--muted)">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z M3 6h18 M16 10a4 4 0 0 1-8 0"></path></svg>
+              </span>
+              <span style="display: flex; flex-direction: column; flex-grow: 1">
+                <span style="font-weight: 500">Honey · talla 38</span>
+                <span style="font-size: 12px; color: var(--muted)">1 par</span>
+              </span>
+              <span style="font-weight: 600; font-variant-numeric: tabular-nums">$158.000</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: center">
+        <span style="font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 6px">
+          <svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M8 2v4 M16 2v4 M3 10h18 M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"></path></svg>
+          La IA agendó un seguimiento para mañana 10:00 si no paga
+        </span>
+      </div>
+    </div>
+
+    <div style="padding: 0 20px 20px">
+      <div style="border: 1px solid var(--border-strong); border-radius: 14px; display: flex; flex-direction: column; background: var(--surface)">
+        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 10px 12px 0">
+          <span style="font-size: 12px; color: var(--muted)">Vía</span>
+          <button type="button" style="height: 30px; padding: 0 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--subtle); color: var(--text); font: inherit; font-size: 13px; display: flex; align-items: center; gap: 6px">
+            <svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"></path></svg>WhatsApp
+          </button>
+          <span style="font-size: 12px; font-weight: 600; padding: 2px 8px; border-radius: 999px; background: var(--ok-bg); color: var(--ok)">Ventana abierta · 23 h</span>
+        </div>
+        <label for="composer" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Mensaje</label>
+        <textarea id="composer" rows="2" placeholder="Escribe un mensaje o usa / para atajos" style="border: 0; outline: 0; resize: none; background: transparent; font: inherit; color: var(--text); padding: 10px 12px"></textarea>
+        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 4px; padding: 0 8px 8px 8px">
+          <sc-for list="{{tools}}" as="t" hint-placeholder-count="4">
+            <button type="button" aria-label="{{t.label}}" style="width: 32px; height: 32px; border-radius: 8px; border: 0; background: transparent; color: var(--muted); display: flex; align-items: center; justify-content: center">
+              <svg aria-hidden="true" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="{{t.icon}}"></path></svg>
+            </button>
+          </sc-for>
+          <button type="button" style="height: 32px; padding: 0 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); color: var(--text); font: inherit; font-size: 13px">Atajos</button>
+          <div style="flex-grow: 1"></div>
+          <button type="button" style="height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--border-strong); background: var(--surface); color: var(--text); font: inherit; font-weight: 600">Tomar conversación</button>
+          <button type="button" style="height: 36px; padding: 0 18px; border-radius: 999px; border: 0; background: var(--primary); color: var(--primary-fg); font: inherit; font-weight: 600">Enviar</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <aside aria-label="Ficha del cliente" style="flex: 1 1 300px; max-width: 360px; min-width: 260px; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; display: flex; flex-direction: column; overflow: hidden">
+    <div role="tablist" aria-label="Panel" style="display: flex; gap: 4px; padding: 10px; border-bottom: 1px solid var(--border)">
+      <button type="button" role="tab" aria-selected="true" style="flex-grow: 1; height: 34px; border-radius: 8px; border: 1px solid var(--border); background: var(--subtle); font: inherit; font-weight: 600; color: var(--text)">Cliente</button>
+      <button type="button" role="tab" aria-selected="false" style="flex-grow: 1; height: 34px; border-radius: 8px; border: 0; background: transparent; font: inherit; color: var(--muted)">Pedido</button>
+    </div>
+    <div style="padding: 18px; display: flex; flex-direction: column; gap: 18px; overflow-y: auto">
+      <div style="display: flex; flex-direction: column; gap: 4px">
+        <span style="font-weight: 600; font-size: 16px">Laura Gómez</span>
+        <span style="font-size: 13px; color: var(--muted)">Medellín · cliente desde mar 2026</span>
+      </div>
+      <dl style="margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+        <div style="display: flex; flex-direction: column; gap: 2px; padding: 10px; border-radius: 10px; background: var(--subtle); border: 1px solid var(--border)">
+          <dt style="font-size: 12px; color: var(--muted)">Pedidos</dt>
+          <dd style="margin: 0; font-weight: 700; font-size: 18px">3</dd>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 2px; padding: 10px; border-radius: 10px; background: var(--subtle); border: 1px solid var(--border)">
+          <dt style="font-size: 12px; color: var(--muted)">Total comprado</dt>
+          <dd style="margin: 0; font-weight: 700; font-size: 18px; font-variant-numeric: tabular-nums">$357.000</dd>
+        </div>
+      </dl>
+
+      <div style="display: flex; flex-direction: column; gap: 10px; border-top: 1px solid var(--border); padding-top: 16px">
+        <span style="font-size: 11px; line-height: 16px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted)">Pedido activo</span>
+        <div style="display: flex; align-items: center; justify-content: space-between">
+          <span style="font-weight: 600">#D-1043</span>
+          <span style="font-size: 11px; font-weight: 600; padding: 1px 8px; border-radius: 999px; background: var(--info-bg); color: var(--info)">Link enviado</span>
+        </div>
+        <dl style="margin: 0; display: flex; flex-direction: column; gap: 6px; font-size: 13px">
+          <div style="display: flex; justify-content: space-between"><dt style="color: var(--muted)">Creado</dt><dd style="margin: 0">Hoy 11:14</dd></div>
+          <div style="display: flex; justify-content: space-between"><dt style="color: var(--muted)">Total</dt><dd style="margin: 0; font-weight: 600">$158.000</dd></div>
+          <div style="display: flex; justify-content: space-between"><dt style="color: var(--muted)">Atribución</dt><dd style="margin: 0">✦ IA</dd></div>
+          <div style="display: flex; justify-content: space-between"><dt style="color: var(--muted)">Pago</dt><dd style="margin: 0">Checkout Shopify</dd></div>
+        </dl>
+        <div style="display: flex; gap: 8px">
+          <button type="button" style="flex-grow: 1; height: 36px; border-radius: 10px; border: 1px solid var(--border); background: var(--surface); color: var(--text); font: inherit; font-weight: 500">Copiar link</button>
+          <button type="button" style="flex-grow: 1; height: 36px; border-radius: 10px; border: 1px solid var(--border); background: var(--surface); color: var(--text); font: inherit; font-weight: 500">Ver en Shopify</button>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 10px; border-top: 1px solid var(--border); padding-top: 16px">
+        <span style="font-size: 11px; line-height: 16px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted)">Seguimientos</span>
+        <div style="display: flex; gap: 10px; align-items: flex-start; padding: 10px; border-radius: 10px; border: 1px solid var(--border)">
+          <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="margin-top: 2px; flex-shrink: 0"><path d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20z M12 6v6l4 2"></path></svg>
+          <span style="display: flex; flex-direction: column; gap: 2px">
+            <span style="font-weight: 500">Mañana · 10:00</span>
+            <span style="font-size: 13px; color: var(--muted)">Recordar el link si no ha pagado</span>
+          </span>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 10px; border-top: 1px solid var(--border); padding-top: 16px">
+        <span style="font-size: 11px; line-height: 16px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted)">Historial</span>
+        <sc-for list="{{history}}" as="h" hint-placeholder-count="2">
+          <div style="display: flex; justify-content: space-between; font-size: 13px">
+            <span>{{h.label}}</span>
+            <span style="color: var(--muted); font-variant-numeric: tabular-nums">{{h.value}}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </aside>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"oscuro":{"editor":"boolean","default":false},"$preview":{"width":1440,"height":940}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var I = {
+      home: 'M3 10.5 12 3l9 7.5V21a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z',
+      inbox: 'M22 12h-6l-2 3h-4l-2-3H2 M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z',
+      clock: 'M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20z M12 6v6l4 2',
+      bag: 'M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z M3 6h18 M16 10a4 4 0 0 1-8 0',
+      users: 'M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2 M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z M22 21v-2a4 4 0 0 0-3-3.87 M16 3.13a4 4 0 0 1 0 7.75',
+      sliders: 'M4 21v-7 M4 10V3 M12 21v-9 M12 8V3 M20 21v-5 M20 12V3 M1 14h6 M9 8h6 M17 16h6',
+      wa: 'M7.9 20A9 9 0 1 0 4 16.1L2 22z',
+      ig: 'M17 2H7a5 5 0 0 0-5 5v10a5 5 0 0 0 5 5h10a5 5 0 0 0 5-5V7a5 5 0 0 0-5-5z M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z M17.5 6.5h.01',
+      ms: 'M12 2C6.5 2 2 6.1 2 11.2c0 2.9 1.4 5.4 3.7 7.1V22l3.4-1.9c.9.3 1.9.4 2.9.4 5.5 0 10-4.1 10-9.2S17.5 2 12 2z M7 13l3-3 2.5 2.5L17 9',
+      type: 'M4 7V4h16v3 M9 20h6 M12 4v16',
+      smile: 'M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20z M8 14s1.5 2 4 2 4-2 4-2 M9 9h.01 M15 9h.01',
+      clip: 'M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48',
+      mic: 'M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z M19 10v2a7 7 0 0 1-14 0v-2 M12 19v3'
+    };
+    var railBase = 'width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--text); ';
+    var tag = 'font-size: 11px; line-height: 16px; font-weight: 600; padding: 1px 7px; border-radius: 999px; ';
+    var T = {
+      ia: { label: '✦ IA', style: tag + 'border: 1px solid var(--border-strong); color: var(--text)' },
+      humano: { label: 'Ana R.', style: tag + 'background: var(--primary); color: var(--primary-fg)' },
+      mayorista: { label: 'MAYORISTA', style: tag + 'background: var(--primary); color: var(--primary-fg); letter-spacing: 0.08em' },
+      cola: { label: 'En cola 5 min', style: tag + 'background: var(--warn-bg); color: var(--warn)' },
+      reclamo: { label: 'Reclamo', style: tag + 'background: var(--bad-bg); color: var(--bad)' },
+      link: { label: 'Link enviado', style: tag + 'background: var(--info-bg); color: var(--info)' },
+      pagado: { label: 'Pagado', style: tag + 'background: var(--ok-bg); color: var(--ok)' }
+    };
+    var row = 'display: flex; gap: 12px; align-items: flex-start; padding: 12px 16px; text-decoration: none; color: var(--text); border-bottom: 1px solid var(--border); ';
+    var fBase = 'height: 30px; padding: 0 12px; border-radius: 999px; font: inherit; font-size: 13px; ';
+    var fOn = fBase + 'border: 0; background: var(--primary); color: var(--primary-fg); font-weight: 600';
+    var fOff = fBase + 'border: 1px solid var(--border); background: var(--surface); color: var(--text)';
+    var bubbleClient = 'align-self: flex-start; max-width: 480px; padding: 10px 12px; border-radius: 4px 12px 12px 12px; background: var(--subtle); border: 1px solid var(--border)';
+    var bubbleIA = 'align-self: flex-start; max-width: 480px; padding: 10px 12px; border-radius: 4px 12px 12px 12px; background: var(--surface); border: 1px solid var(--border-strong)';
+    var avClient = 'width: 30px; height: 30px; flex-shrink: 0; border-radius: 999px; background: var(--subtle); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600';
+    var avIA = 'width: 30px; height: 30px; flex-shrink: 0; border-radius: 999px; border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-size: 12px';
+    var stage = function (label, state, last) {
+      var on = state !== 'todo';
+      return {
+        label: label,
+        dot: 'width: 12px; height: 12px; border-radius: 999px; flex-shrink: 0; box-sizing: border-box; ' + (state === 'done' ? 'background: var(--text)' : state === 'now' ? 'background: var(--surface); border: 3px solid var(--text)' : 'background: var(--surface); border: 1.5px solid var(--border-strong)'),
+        line: last ? 'flex-grow: 1' : 'flex-grow: 1; height: 0; margin: 0 4px; border-top: ' + (state === 'done' ? '2px solid var(--text)' : '2px dotted var(--border-strong)'),
+        labelStyle: on ? 'font-weight: 600; color: var(--text)' : 'color: var(--muted)'
+      };
+    };
+    return {
+      mode: this.props.oscuro ? 'dark' : '',
+      rail: [
+        { label: 'Inicio', icon: I.home, href: 'Main.dc.html', style: railBase },
+        { label: 'Bandeja', icon: I.inbox, href: 'Bandeja.dc.html', style: railBase + 'background: var(--surface); border: 1px solid var(--border); box-shadow: 0 1px 2px rgb(0 0 0 / .05)' },
+        { label: 'Seguimientos', icon: I.clock, href: '#', style: railBase },
+        { label: 'Pedidos', icon: I.bag, href: '#', style: railBase },
+        { label: 'Clientes', icon: I.users, href: '#', style: railBase },
+        { label: 'Configuración', icon: I.sliders, href: '#', style: railBase }
+      ],
+      filters: [
+        { label: 'Mías', sel: 'true', style: fOn },
+        { label: 'Todas', sel: 'false', style: fOff },
+        { label: 'En cola · 6', sel: 'false', style: fOff },
+        { label: 'Mayoristas', sel: 'false', style: fOff }
+      ],
+      convs: [
+        { ini: 'CP', name: 'Carlos Pérez', time: '5 min', preview: 'Necesito 30 pares para mi tienda en Cali', channelIcon: I.ig, tags: [T.mayorista, T.cola], unread: true, rowStyle: row },
+        { ini: 'LG', name: 'Laura Gómez', time: '2 min', preview: 'Sara: Te envío el link de pago', channelIcon: I.wa, tags: [T.ia, T.link], unread: false, rowStyle: row + 'background: var(--subtle); box-shadow: inset 3px 0 0 var(--text)' },
+        { ini: 'PR', name: 'Paula Restrepo', time: '12 min', preview: 'Me llegó otra talla, ¿cómo hago el cambio?', channelIcon: I.wa, tags: [T.reclamo, T.humano], unread: true, rowStyle: row },
+        { ini: 'VR', name: 'Valentina Ríos', time: '40 min', preview: 'Sara: ¡Listo! Tu combo de 2 queda en $199.000', channelIcon: I.wa, tags: [T.ia, T.link], unread: false, rowStyle: row },
+        { ini: 'AM', name: 'Andrea Mejía', time: '2 h', preview: 'Ana: Claro, te confirmo la talla 37', channelIcon: I.ms, tags: [T.humano], unread: false, rowStyle: row },
+        { ini: 'ML', name: 'Mariana López', time: '11:05', preview: 'Pago confirmado con Addi', channelIcon: I.wa, tags: [T.ia, T.pagado], unread: false, rowStyle: row }
+      ],
+      msgs: [
+        { who: 'Laura Gómez', time: '11:12', av: 'LG', avStyle: avClient, bubble: bubbleClient, text: 'Hola! ¿Tienen los Honey en talla 38? ¿Cuánto se demora el envío a Medellín?', transcript: false },
+        { who: 'Sara (asistente)', time: '11:12', av: '✦', avStyle: avIA, bubble: bubbleIA, text: '¡Hola Laura! Sí, nos quedan 3 pares de Honey en talla 38 a $158.000. A Medellín llega en 2 a 3 días hábiles y el envío es gratis. ¿Te lo separo?', transcript: false },
+        { who: 'Laura Gómez', time: '11:13', av: 'LG', avStyle: avClient, bubble: bubbleClient, text: '“Sí porfa, mándame el link y pago con Addi”', transcript: true }
+      ],
+      stages: [stage('Borrador', 'done', false), stage('Link enviado', 'now', false), stage('Pagado', 'todo', false), stage('Enviado', 'todo', true)],
+      tools: [
+        { label: 'Formato', icon: I.type },
+        { label: 'Emoji', icon: I.smile },
+        { label: 'Adjuntar', icon: I.clip },
+        { label: 'Nota de voz', icon: I.mic }
+      ],
+      history: [
+        { label: '#1021 · Sandalias 38', value: '$119.000' },
+        { label: '#0987 · Tenis Nube 38', value: '$80.000' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

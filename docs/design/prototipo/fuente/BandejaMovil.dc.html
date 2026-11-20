@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Jeff CRM — Chat en el celular</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#1C1C1C}a:hover{color:#555}
+.jc{--canvas:#F3F2EF;--surface:#FFFEFC;--subtle:#F7F6F3;--border:#E6E4DF;--border-strong:#D4D1CB;--text:#1C1C1C;--muted:#6B6A67;--faint:#8A8884;--primary:#1C1C1C;--primary-fg:#FFFEFC;--warn-bg:#FBF0DC;--warn:#7E4C00}
+.jc.dark{--canvas:#0E0E0E;--surface:#171717;--subtle:#202020;--border:#2A2A2A;--border-strong:#3A3A3A;--text:#F5F4F1;--muted:#A3A19D;--faint:#8C8A86;--primary:#FFFEFC;--primary-fg:#1C1C1C;--warn-bg:#33260F;--warn:#F2C277}
+</style>
+</helmet>
+<div class="jc {{mode}}" style="width: 390px; height: 844px; box-sizing: border-box; background: var(--surface); color: var(--text); font-family: Inter, system-ui, sans-serif; font-size: 16px; line-height: 22px; display: flex; flex-direction: column; overflow: hidden">
+
+  <header style="display: flex; align-items: center; gap: 10px; padding: 14px 12px 12px; border-bottom: 1px solid var(--border)">
+    <a href="Bandeja.dc.html" aria-label="Volver a la bandeja" style="width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--text)">
+      <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg>
+    </a>
+    <span aria-hidden="true" style="width: 38px; height: 38px; border-radius: 999px; background: var(--subtle); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600">CP</span>
+    <div style="display: flex; flex-direction: column; flex-grow: 1; min-width: 0">
+      <span style="font-weight: 600; font-size: 16px">Carlos Pérez</span>
+      <span style="font-size: 12px; line-height: 16px; color: var(--muted)">Instagram · asignado a ti</span>
+    </div>
+    <button type="button" aria-label="Ver ficha del cliente" style="width: 44px; height: 44px; border-radius: 12px; border: 1px solid var(--border); background: var(--surface); color: var(--text); display: flex; align-items: center; justify-content: center">
+      <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2 M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"></path></svg>
+    </button>
+  </header>
+
+  <div style="display: flex; flex-direction: column; gap: 8px; padding: 12px 16px; background: var(--subtle); border-bottom: 1px solid var(--border)">
+    <div style="display: flex; align-items: center; gap: 8px">
+      <span style="font-size: 11px; line-height: 16px; font-weight: 600; padding: 1px 7px; border-radius: 999px; background: var(--primary); color: var(--primary-fg); letter-spacing: 0.08em">MAYORISTA</span>
+      <span style="font-size: 11px; line-height: 16px; font-weight: 600; padding: 1px 7px; border-radius: 999px; background: var(--warn-bg); color: var(--warn)">Esperando 5 min</span>
+    </div>
+    <p style="margin: 0; font-size: 14px; line-height: 20px"><strong style="font-weight: 600">Resumen de la IA:</strong> <span style="color: var(--muted)">tiene una tienda en Cali y quiere 30 pares surtidos (tallas 35–39) de los modelos de la colección Dama. Pregunta precio por mayor y tiempo de entrega.</span></p>
+  </div>
+
+  <div style="flex-grow: 1; padding: 16px; display: flex; flex-direction: column; gap: 14px; overflow-y: auto">
+    <sc-for list="{{msgs}}" as="m" hint-placeholder-count="3">
+      <div style="{{m.wrap}}">
+        <span style="font-size: 12px; line-height: 16px; color: var(--muted)">{{m.meta}}</span>
+        <div style="{{m.bubble}}">{{m.text}}</div>
+      </div>
+    </sc-for>
+    <span style="align-self: center; font-size: 12px; line-height: 16px; color: var(--muted); text-align: center; padding: 0 12px">Sara pasó la conversación a Jeff · motivo: mayorista (30 unidades)</span>
+  </div>
+
+  <div style="padding: 10px 12px 12px; border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 10px; background: var(--surface)">
+    <a href="#" style="height: 44px; border-radius: 999px; background: var(--primary); color: var(--primary-fg); font-weight: 600; font-size: 15px; display: flex; align-items: center; justify-content: center; text-decoration: none">Tomar conversación</a>
+    <div style="display: flex; align-items: center; gap: 8px">
+      <button type="button" aria-label="Adjuntar" style="width: 44px; height: 44px; flex-shrink: 0; border-radius: 999px; border: 1px solid var(--border); background: var(--surface); color: var(--muted); display: flex; align-items: center; justify-content: center">
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 5v14 M5 12h14"></path></svg>
+      </button>
+      <label for="msg-movil" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Mensaje</label>
+      <input id="msg-movil" type="text" placeholder="Mensaje" style="flex-grow: 1; min-width: 0; height: 44px; box-sizing: border-box; padding: 0 14px; border-radius: 999px; border: 1px solid var(--border-strong); background: var(--subtle); font: inherit; font-size: 16px; color: var(--text); outline: 0">
+      <button type="button" aria-label="Mantén presionado para grabar una nota de voz" style="width: 44px; height: 44px; flex-shrink: 0; border-radius: 999px; border: 0; background: var(--primary); color: var(--primary-fg); display: flex; align-items: center; justify-content: center">
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z M19 10v2a7 7 0 0 1-14 0v-2 M12 19v3"></path></svg>
+      </button>
+    </div>
+  </div>
+
+  <nav aria-label="Navegación" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--border); padding: 6px 4px 18px; background: var(--surface)">
+    <sc-for list="{{tabs}}" as="t" hint-placeholder-count="4">
+      <a href="{{t.href}}" style="{{t.style}}">
+        <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="{{t.icon}}"></path></svg>
+        <span>{{t.label}}</span>
+      </a>
+    </sc-for>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"oscuro":{"editor":"boolean","default":false},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var client = 'display: flex; flex-direction: column; gap: 4px; align-items: flex-start';
+    var bClient = 'max-width: 290px; padding: 10px 12px; border-radius: 4px 14px 14px 14px; background: var(--subtle); border: 1px solid var(--border); font-size: 15px; line-height: 21px';
+    var bIA = 'max-width: 290px; padding: 10px 12px; border-radius: 4px 14px 14px 14px; background: var(--surface); border: 1px solid var(--border-strong); font-size: 15px; line-height: 21px';
+    var tabBase = 'display: flex; flex-direction: column; align-items: center; gap: 2px; min-height: 48px; justify-content: center; font-size: 11px; line-height: 14px; text-decoration: none; ';
+    return {
+      mode: this.props.oscuro ? 'dark' : '',
+      msgs: [
+        { wrap: client, meta: 'Carlos · 10:51', bubble: bClient, text: 'Buenas, tengo una tienda en Cali y me interesan 30 pares surtidos de dama. ¿Qué precio me dan?' },
+        { wrap: client, meta: '✦ Sara (asistente) · 10:51', bubble: bIA, text: '¡Hola Carlos! Qué bueno que te interese. Para pedidos al por mayor te atiende directamente Jeff, ya le pasé tu solicitud. Mientras tanto, ¿qué tallas necesitas?' },
+        { wrap: client, meta: 'Carlos · 10:53', bubble: bClient, text: 'De la 35 a la 39, más que todo 37 y 38' }
+      ],
+      tabs: [
+        { label: 'Inicio', href: 'Main.dc.html', icon: 'M3 10.5 12 3l9 7.5V21a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z', style: tabBase + 'color: var(--muted)' },
+        { label: 'Bandeja', href: 'Bandeja.dc.html', icon: 'M22 12h-6l-2 3h-4l-2-3H2 M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z', style: tabBase + 'color: var(--text); font-weight: 600' },
+        { label: 'Seguimientos', href: '#', icon: 'M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20z M12 6v6l4 2', style: tabBase + 'color: var(--muted)' },
+        { label: 'Más', href: '#', icon: 'M4 6h16 M4 12h16 M4 18h16', style: tabBase + 'color: var(--muted)' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

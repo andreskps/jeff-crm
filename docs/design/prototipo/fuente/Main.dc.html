@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Jeff CRM — Inicio</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#1C1C1C}a:hover{color:#555}
+.jc{--canvas:#F3F2EF;--surface:#FFFEFC;--subtle:#F7F6F3;--border:#E6E4DF;--border-strong:#D4D1CB;--text:#1C1C1C;--muted:#6B6A67;--faint:#8A8884;--primary:#1C1C1C;--primary-fg:#FFFEFC;--ok-bg:#E3F3EA;--ok:#156B3A;--warn-bg:#FBF0DC;--warn:#7E4C00;--bad-bg:#FBE7E7;--bad:#B42323;--info-bg:#E6EDFB;--info:#2A55B0}
+.jc.dark{--canvas:#0E0E0E;--surface:#171717;--subtle:#202020;--border:#2A2A2A;--border-strong:#3A3A3A;--text:#F5F4F1;--muted:#A3A19D;--faint:#8C8A86;--primary:#FFFEFC;--primary-fg:#1C1C1C;--ok-bg:#12301F;--ok:#7FD6A2;--warn-bg:#33260F;--warn:#F2C277;--bad-bg:#3A1616;--bad:#F29B9B;--info-bg:#152340;--info:#9DB8F2}
+</style>
+</helmet>
+<div class="jc {{mode}}" style="min-height: 100vh; background: var(--canvas); color: var(--text); font-family: Inter, system-ui, sans-serif; font-size: 14px; line-height: 20px; display: flex; flex-wrap: wrap; align-items: stretch">
+
+  <nav aria-label="Navegación principal" style="flex: 1 1 248px; max-width: 248px; min-width: 220px; box-sizing: border-box; padding: 16px 12px; display: flex; flex-direction: column; gap: 4px; background: var(--canvas)">
+    <div style="display: flex; align-items: center; gap: 10px; padding: 6px 8px 12px">
+      <div aria-hidden="true" style="width: 36px; height: 36px; border-radius: 999px; border: 1.5px solid var(--text); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; font-style: italic; letter-spacing: -0.02em; background: var(--surface)">Jeff</div>
+      <div style="display: flex; flex-direction: column; flex-grow: 1; min-width: 0">
+        <span style="font-weight: 600; font-size: 14px">Jeff CRM</span>
+        <span style="font-size: 12px; line-height: 16px; color: var(--muted)">Jeff Shoes · Admin</span>
+      </div>
+      <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--muted)"><path d="M7 15l5 5 5-5 M7 9l5-5 5 5"></path></svg>
+    </div>
+    <label style="display: flex; align-items: center; gap: 8px; height: 40px; padding: 0 10px; border-radius: 10px; background: var(--surface); border: 1px solid var(--border); color: var(--muted); margin-bottom: 12px">
+      <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16z M21 21l-4.35-4.35"></path></svg>
+      <input type="search" placeholder="Buscar" aria-label="Buscar" style="border: 0; outline: 0; background: transparent; flex-grow: 1; min-width: 0; font: inherit; color: var(--text)">
+      <span style="font-size: 11px; padding: 1px 6px; border-radius: 6px; border: 1px solid var(--border); color: var(--muted)">⌘K</span>
+    </label>
+    <span style="font-size: 11px; line-height: 16px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 4px 10px">Principal</span>
+    <sc-for list="{{navMain}}" as="item" hint-placeholder-count="5">
+      <a href="{{item.href}}" style="{{item.style}}">
+        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="{{item.icon}}"></path></svg>
+        <span style="flex-grow: 1">{{item.label}}</span>
+        <sc-if value="{{item.badge}}" hint-placeholder-val="{{true}}">
+          <span style="{{item.badgeStyle}}">{{item.badge}}</span>
+        </sc-if>
+      </a>
+    </sc-for>
+    <span style="font-size: 11px; line-height: 16px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 16px 10px 4px">Herramientas</span>
+    <sc-for list="{{navTools}}" as="item" hint-placeholder-count="3">
+      <a href="#" style="{{item.style}}">
+        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="{{item.icon}}"></path></svg>
+        <span style="flex-grow: 1">{{item.label}}</span>
+      </a>
+    </sc-for>
+    <div style="flex-grow: 1; min-height: 24px"></div>
+    <div style="display: flex; align-items: center; gap: 10px; padding: 10px; border-radius: 14px; background: var(--surface); border: 1px solid var(--border)">
+      <div aria-hidden="true" style="width: 34px; height: 34px; border-radius: 999px; background: var(--primary); color: var(--primary-fg); display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 13px">J</div>
+      <div style="display: flex; flex-direction: column; flex-grow: 1; min-width: 0">
+        <span style="font-weight: 600; font-size: 13px">Jeff</span>
+        <span style="font-size: 12px; line-height: 16px; color: var(--muted)">Dueño · Admin</span>
+      </div>
+      <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="color: var(--muted)"><path d="M7 15l5 5 5-5 M7 9l5-5 5 5"></path></svg>
+    </div>
+  </nav>
+
+  <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; padding: 8px 8px 8px 0; box-sizing: border-box">
+    <header style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 8px 16px 14px">
+      <div style="display: flex; align-items: center; gap: 8px; font-size: 13px; flex-grow: 1">
+        <span style="color: var(--muted)">Inicio</span>
+        <span style="color: var(--faint)">/</span>
+        <span style="font-weight: 500">Resumen</span>
+      </div>
+      <div style="display: flex; align-items: center" aria-label="Equipo en línea: 4 personas">
+        <sc-for list="{{team}}" as="p" hint-placeholder-count="3">
+          <span aria-hidden="true" style="{{p.style}}">{{p.ini}}</span>
+        </sc-for>
+        <span aria-hidden="true" style="width: 30px; height: 30px; border-radius: 999px; margin-left: -8px; border: 2px solid var(--canvas); background: var(--subtle); color: var(--muted); font-size: 11px; font-weight: 600; display: flex; align-items: center; justify-content: center">+1</span>
+      </div>
+      <button type="button" aria-label="Configuración" style="width: 40px; height: 40px; border-radius: 10px; border: 1px solid var(--border); background: var(--surface); color: var(--text); display: flex; align-items: center; justify-content: center; cursor: pointer">
+        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 21v-7 M4 10V3 M12 21v-9 M12 8V3 M20 21v-5 M20 12V3 M1 14h6 M9 8h6 M17 16h6"></path></svg>
+      </button>
+      <button type="button" aria-label="Notificaciones, 3 nuevas" style="width: 40px; height: 40px; border-radius: 10px; border: 1px solid var(--border); background: var(--surface); color: var(--text); display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer">
+        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9 M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+        <span aria-hidden="true" style="position: absolute; top: 8px; right: 9px; width: 8px; height: 8px; border-radius: 999px; background: var(--bad); border: 2px solid var(--surface)"></span>
+      </button>
+      <button type="button" style="height: 40px; padding: 0 18px; border-radius: 999px; border: 0; background: var(--primary); color: var(--primary-fg); font: inherit; font-weight: 600; display: flex; align-items: center; gap: 8px; cursor: pointer">
+        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14 M5 12h14"></path></svg>
+        Nuevo seguimiento
+      </button>
+    </header>
+
+    <main style="flex-grow: 1; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 32px; display: flex; flex-direction: column; gap: 24px; box-shadow: 0 1px 2px rgb(0 0 0 / .05)">
+      <div style="display: flex; flex-direction: column; gap: 4px">
+        <h1 style="margin: 0; font-size: 28px; line-height: 34px; font-weight: 700; letter-spacing: -0.01em">Hola, Jeff.</h1>
+        <p style="margin: 0; color: var(--muted)">Esto es lo que pasa hoy en tus ventas.</p>
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 10px 10px 10px 12px; border-radius: 12px; background: var(--subtle); border: 1px solid var(--border)">
+        <span aria-hidden="true" style="width: 32px; height: 32px; border-radius: 8px; background: var(--primary); color: var(--primary-fg); display: flex; align-items: center; justify-content: center">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"></path></svg>
+        </span>
+        <p style="margin: 0; flex: 1 1 280px"><strong style="font-weight: 600">Tu asistente atendió 84 conversaciones hoy.</strong> <span style="color: var(--muted)">6 esperan a un humano y 2 son mayoristas.</span></p>
+        <a href="Bandeja.dc.html" style="height: 36px; padding: 0 14px; border-radius: 10px; background: var(--surface); border: 1px solid var(--border); color: var(--text); font-weight: 500; display: flex; align-items: center; text-decoration: none">Ver en cola</a>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px">
+        <sc-for list="{{kpis}}" as="k" hint-placeholder-count="4">
+          <div style="border: 1px solid var(--border); border-radius: 14px; padding: 16px; display: flex; flex-direction: column; gap: 14px; background: var(--surface)">
+            <div style="display: flex; align-items: center; justify-content: space-between">
+              <span aria-hidden="true" style="width: 36px; height: 36px; border-radius: 9px; background: var(--primary); color: var(--primary-fg); display: flex; align-items: center; justify-content: center">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="{{k.icon}}"></path></svg>
+              </span>
+              <a href="#" style="font-size: 13px; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 2px">Ver detalle <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 18l6-6-6-6"></path></svg></a>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 2px">
+              <span style="font-size: 28px; line-height: 32px; font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: -0.01em">{{k.value}}</span>
+              <span style="color: var(--muted)">{{k.label}}</span>
+            </div>
+            <span style="font-size: 12px; line-height: 16px; color: var(--muted); border-top: 1px solid var(--border); padding-top: 10px">{{k.foot}}</span>
+          </div>
+        </sc-for>
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px; border-top: 1px solid var(--border); padding-top: 20px">
+        <div role="tablist" aria-label="Vista del pipeline" style="display: flex; gap: 4px; padding: 4px; border-radius: 12px; background: var(--subtle); border: 1px solid var(--border)">
+          <button type="button" role="tab" aria-selected="true" style="height: 34px; padding: 0 12px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); color: var(--text); font: inherit; font-weight: 500; display: flex; align-items: center; gap: 6px; box-shadow: 0 1px 2px rgb(0 0 0 / .05)">
+            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 5v11 M12 5v6 M18 5v14"></path></svg>Pipeline
+          </button>
+          <button type="button" role="tab" aria-selected="false" style="height: 34px; padding: 0 12px; border-radius: 8px; border: 0; background: transparent; color: var(--muted); font: inherit; display: flex; align-items: center; gap: 6px">
+            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M8 6h13 M8 12h13 M8 18h13 M3 6h.01 M3 12h.01 M3 18h.01"></path></svg>Lista
+          </button>
+        </div>
+        <div style="flex-grow: 1"></div>
+        <button type="button" style="height: 36px; padding: 0 12px; border-radius: 10px; border: 1px solid var(--border); background: var(--surface); color: var(--text); font: inherit; display: flex; align-items: center; gap: 6px">
+          <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M22 3H2l8 9.46V19l4 2v-8.54z"></path></svg>Canal: todos
+        </button>
+        <button type="button" style="height: 36px; padding: 0 12px; border-radius: 10px; border: 1px solid var(--border); background: var(--surface); color: var(--text); font: inherit; display: flex; align-items: center; gap: 6px">Responsable: todos</button>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; align-items: start">
+        <sc-for list="{{columns}}" as="col" hint-placeholder-count="4">
+          <section aria-label="{{col.title}}" style="display: flex; flex-direction: column; gap: 10px; padding: 10px; border-radius: 14px; background: var(--subtle); border: 1px solid var(--border)">
+            <div style="display: flex; align-items: center; justify-content: space-between; padding: 2px 2px 4px">
+              <span style="{{col.pillStyle}}">
+                <span aria-hidden="true" style="{{col.dotStyle}}"></span>{{col.title}}
+                <span style="font-size: 11px; font-weight: 600; padding: 0 6px; border-radius: 999px; background: var(--surface); color: var(--text)">{{col.count}}</span>
+              </span>
+              <button type="button" aria-label="Opciones de la columna" style="width: 28px; height: 28px; border: 0; background: transparent; color: var(--muted); border-radius: 6px">
+                <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2z M19 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2z M5 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"></path></svg>
+              </button>
+            </div>
+            <sc-for list="{{col.cards}}" as="c" hint-placeholder-count="2">
+              <a href="Bandeja.dc.html" style="text-decoration: none; color: var(--text); background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 12px; display: flex; flex-direction: column; gap: 8px; box-shadow: 0 1px 2px rgb(0 0 0 / .04)">
+                <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 6px">
+                  <span style="display: flex; align-items: center; gap: 4px; font-size: 12px; color: var(--muted)">
+                    <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="{{c.channelIcon}}"></path></svg>{{c.channel}}
+                  </span>
+                  <sc-for list="{{c.tags}}" as="t" hint-placeholder-count="1">
+                    <span style="{{t.style}}">{{t.label}}</span>
+                  </sc-for>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 2px">
+                  <span style="font-weight: 600">{{c.name}}</span>
+                  <span style="font-size: 13px; line-height: 18px; color: var(--muted)">{{c.desc}}</span>
+                </div>
+                <span style="align-self: flex-start; display: flex; align-items: center; gap: 6px; font-size: 12px; line-height: 16px; padding: 3px 8px; border-radius: 6px; background: var(--subtle); border: 1px solid var(--border)">
+                  <svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="{{c.metaIcon}}"></path></svg>{{c.meta}}
+                </span>
+                <div style="display: flex; align-items: center; gap: 8px; border-top: 1px solid var(--border); padding-top: 8px; font-size: 12px; color: var(--muted)">
+                  <span aria-hidden="true" style="{{c.ownerStyle}}">{{c.owner}}</span>
+                  <span style="flex-grow: 1">{{c.ownerName}}</span>
+                  <span>{{c.time}}</span>
+                </div>
+              </a>
+            </sc-for>
+          </section>
+        </sc-for>
+      </div>
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"oscuro":{"editor":"boolean","default":false},"$preview":{"width":1440,"height":1180}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var I = {
+      home: 'M3 10.5 12 3l9 7.5V21a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z',
+      inbox: 'M22 12h-6l-2 3h-4l-2-3H2 M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z',
+      clock: 'M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20z M12 6v6l4 2',
+      bag: 'M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z M3 6h18 M16 10a4 4 0 0 1-8 0',
+      users: 'M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2 M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z M22 21v-2a4 4 0 0 0-3-3.87 M16 3.13a4 4 0 0 1 0 7.75',
+      book: 'M4 19.5A2.5 2.5 0 0 1 6.5 17H20V2H6.5A2.5 2.5 0 0 0 4 4.5v15z M6.5 17A2.5 2.5 0 0 0 4 19.5 2.5 2.5 0 0 0 6.5 22H20v-5',
+      chart: 'M3 3v18h18 M7 16v-5 M12 16V8 M17 16v-9',
+      sliders: 'M4 21v-7 M4 10V3 M12 21v-9 M12 8V3 M20 21v-5 M20 12V3 M1 14h6 M9 8h6 M17 16h6',
+      msg: 'M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z',
+      cash: 'M12 1v22 M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6',
+      cal: 'M8 2v4 M16 2v4 M3 10h18 M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z',
+      link: 'M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71 M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71',
+      check: 'M22 11.08V12a10 10 0 1 1-5.93-9.14 M22 4 12 14.01l-3-3',
+      wa: 'M7.9 20A9 9 0 1 0 4 16.1L2 22z',
+      ig: 'M17 2H7a5 5 0 0 0-5 5v10a5 5 0 0 0 5 5h10a5 5 0 0 0 5-5V7a5 5 0 0 0-5-5z M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z M17.5 6.5h.01',
+      ms: 'M12 2C6.5 2 2 6.1 2 11.2c0 2.9 1.4 5.4 3.7 7.1V22l3.4-1.9c.9.3 1.9.4 2.9.4 5.5 0 10-4.1 10-9.2S17.5 2 12 2z M7 13l3-3 2.5 2.5L17 9'
+    };
+    var navBase = 'display: flex; align-items: center; gap: 10px; height: 40px; padding: 0 10px; border-radius: 10px; text-decoration: none; font-size: 14px; ';
+    var navOn = navBase + 'background: var(--surface); color: var(--text); font-weight: 600; border: 1px solid var(--border); box-shadow: 0 1px 2px rgb(0 0 0 / .05)';
+    var navOff = navBase + 'color: var(--text); border: 1px solid transparent';
+    var pill = 'font-size: 11px; line-height: 16px; font-weight: 600; padding: 1px 7px; border-radius: 999px; ';
+    var tag = 'font-size: 11px; line-height: 16px; font-weight: 600; padding: 1px 7px; border-radius: 999px; display: inline-flex; align-items: center; gap: 4px; ';
+    var T = {
+      ia: { label: '✦ IA', style: tag + 'border: 1px solid var(--border-strong); color: var(--text)' },
+      humano: { label: 'Humano', style: tag + 'background: var(--primary); color: var(--primary-fg)' },
+      mayorista: { label: 'MAYORISTA', style: tag + 'background: var(--primary); color: var(--primary-fg); letter-spacing: 0.08em' },
+      cola: { label: 'En cola', style: tag + 'background: var(--warn-bg); color: var(--warn)' },
+      vencido: { label: 'Vencido', style: tag + 'background: var(--bad-bg); color: var(--bad)' },
+      tarea: { label: 'Tarea humana', style: tag + 'background: var(--subtle); color: var(--text); border: 1px solid var(--border)' }
+    };
+    var av = function (bg, fg) { return 'width: 22px; height: 22px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 600; background: ' + bg + '; color: ' + fg; };
+    var avIA = av('var(--surface)', 'var(--text)') + '; border: 1px solid var(--border-strong)';
+    var avH = av('var(--primary)', 'var(--primary-fg)');
+    var colPill = function (dot) { return { pillStyle: 'display: inline-flex; align-items: center; gap: 8px; height: 30px; padding: 0 6px 0 12px; border-radius: 999px; background: var(--surface); border: 1px solid var(--border); font-weight: 600; font-size: 13px', dotStyle: 'width: 8px; height: 8px; border-radius: 999px; background: ' + dot }; };
+    var teamAv = function (ini, i) { return { ini: ini, style: 'width: 30px; height: 30px; border-radius: 999px; border: 2px solid var(--canvas); margin-left: ' + (i ? '-8px' : '0') + '; background: var(--primary); color: var(--primary-fg); font-size: 11px; font-weight: 600; display: flex; align-items: center; justify-content: center' }; };
+    return {
+      mode: this.props.oscuro ? 'dark' : '',
+      navMain: [
+        { label: 'Inicio', icon: I.home, href: 'Main.dc.html', style: navOn, badge: '' },
+        { label: 'Bandeja', icon: I.inbox, href: 'Bandeja.dc.html', style: navOff, badge: '12', badgeStyle: pill + 'background: var(--primary); color: var(--primary-fg)' },
+        { label: 'Seguimientos', icon: I.clock, href: '#', style: navOff, badge: '4', badgeStyle: pill + 'background: var(--bad-bg); color: var(--bad)' },
+        { label: 'Pedidos', icon: I.bag, href: '#', style: navOff, badge: '' },
+        { label: 'Clientes', icon: I.users, href: '#', style: navOff, badge: '' }
+      ],
+      navTools: [
+        { label: 'Conocimiento', icon: I.book, style: navOff },
+        { label: 'Reportes', icon: I.chart, style: navOff },
+        { label: 'Configuración', icon: I.sliders, style: navOff }
+      ],
+      team: [teamAv('AR', 0), teamAv('MC', 1), teamAv('LT', 2)],
+      kpis: [
+        { icon: I.msg, value: '132', label: 'Conversaciones nuevas hoy', foot: '84 atendidas solo por la IA' },
+        { icon: I.cash, value: '$2.874.000', label: 'Ventas de hoy', foot: 'IA 64 % · Vendedores 36 %' },
+        { icon: I.cal, value: '18', label: 'Seguimientos para hoy', foot: '4 vencidos · 3 en IG/Messenger' },
+        { icon: I.clock, value: '22 s', label: 'Primera respuesta (p95)', foot: 'Meta: menos de 30 s' }
+      ],
+      columns: [
+        Object.assign({ title: 'Conversando', count: 24, cards: [
+          { channel: 'WhatsApp', channelIcon: I.wa, tags: [T.ia], name: 'Laura Gómez', desc: 'Honey talla 38 · pregunta por envío a Medellín', metaIcon: I.msg, meta: '6 mensajes', owner: '✦', ownerStyle: avIA, ownerName: 'Asistente', time: 'hace 2 min' },
+          { channel: 'Instagram', channelIcon: I.ig, tags: [T.mayorista, T.cola], name: 'Carlos Pérez', desc: 'Pide precio por 30 pares para su tienda', metaIcon: I.clock, meta: 'Esperando 5 min', owner: 'J', ownerStyle: avH, ownerName: 'Jeff', time: 'hace 5 min' }
+        ] }, colPill('var(--faint)')),
+        Object.assign({ title: 'Link enviado', count: 9, cards: [
+          { channel: 'WhatsApp', channelIcon: I.wa, tags: [T.ia], name: 'Valentina Ríos', desc: 'Combo 2 tenis · $199.000', metaIcon: I.link, meta: 'Link de pago hace 40 min', owner: '✦', ownerStyle: avIA, ownerName: 'Asistente', time: '10:42' },
+          { channel: 'Messenger', channelIcon: I.ms, tags: [T.humano], name: 'Andrea Mejía', desc: 'Sandalias talla 37 · $119.000', metaIcon: I.link, meta: 'Link de pago hace 2 h', owner: 'AR', ownerStyle: avH, ownerName: 'Ana R.', time: '09:15' }
+        ] }, colPill('var(--info)')),
+        Object.assign({ title: 'Seguimiento', count: 18, cards: [
+          { channel: 'WhatsApp', channelIcon: I.wa, tags: [T.ia], name: 'Sofía Castro', desc: '“Me pagan el viernes y te escribo”', metaIcon: I.cal, meta: 'Vie 22 nov · 10:00', owner: '✦', ownerStyle: avIA, ownerName: 'Asistente', time: 'ayer' },
+          { channel: 'Instagram', channelIcon: I.ig, tags: [T.tarea, T.vencido], name: 'Daniela Ortiz', desc: 'Fuera de la ventana de IG: escribirle a mano', metaIcon: I.cal, meta: 'Mié 20 nov', owner: 'MC', ownerStyle: avH, ownerName: 'Mateo C.', time: 'lun' }
+        ] }, colPill('var(--warn)')),
+        Object.assign({ title: 'Pagado', count: 31, cards: [
+          { channel: 'WhatsApp', channelIcon: I.wa, tags: [T.ia], name: 'Mariana López', desc: 'Honey talla 37 · $158.000 · Addi', metaIcon: I.check, meta: 'Pagado 11:05', owner: '✦', ownerStyle: avIA, ownerName: 'Asistente', time: '11:05' },
+          { channel: 'WhatsApp', channelIcon: I.wa, tags: [T.humano], name: 'Juliana Vargas', desc: 'Combo 3 tenis · $279.000 · Contraentrega', metaIcon: I.check, meta: 'Pagado 09:48', owner: 'LT', ownerStyle: avH, ownerName: 'Luisa T.', time: '09:48' }
+        ] }, colPill('var(--ok)'))
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
