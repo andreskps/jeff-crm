@@ -19,3 +19,13 @@ __pycache__/
 Thumbs.db
 .vscode/
 .idea/
+
+# Next.js / TypeScript / pruebas
+next-env.d.ts
+*.tsbuildinfo
+coverage/
+out/
+
+# Supabase local
+supabase/.temp/
+supabase/.branches/

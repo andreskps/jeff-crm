@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+/* Tokens monocromos de docs/design.md §3. La UI completa llega en la fase 12. */
+:root {
+  --bg-canvas: #f3f2ef;
+  --bg-surface: #fffefc;
+  --bg-subtle: #f7f6f3;
+  --border: #e6e4df;
+  --border-strong: #d4d1cb;
+  --text: #1c1c1c;
+  --text-muted: #6b6a67;
+  --primary: #1c1c1c;
+  --primary-fg: #fffefc;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-canvas: #0e0e0e;
+    --bg-surface: #171717;
+    --bg-subtle: #202020;
+    --border: #2a2a2a;
+    --border-strong: #3a3a3a;
+    --text: #f5f4f1;
+    --text-muted: #a3a19d;
+    --primary: #fffefc;
+    --primary-fg: #1c1c1c;
+  }
+}
+
+@theme inline {
+  --color-canvas: var(--bg-canvas);
+  --color-surface: var(--bg-surface);
+  --color-subtle: var(--bg-subtle);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-text: var(--text);
+  --color-muted: var(--text-muted);
+  --color-primary: var(--primary);
+  --color-primary-fg: var(--primary-fg);
+  --font-sans: var(--font-inter);
+}
+
+body {
+  background: var(--bg-canvas);
+  color: var(--text);
+}

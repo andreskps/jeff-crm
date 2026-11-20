@@ -11,15 +11,19 @@ Aprobado: TypeScript, Next.js (PWA), Supabase, worker con pg-boss, Railway; IA m
 ## Comandos
 | Acción | Comando |
 |---|---|
-| Instalar | _pendiente_ |
-| Desarrollo | _pendiente_ |
-| Tests | _pendiente_ |
-| Lint / typecheck | _pendiente_ |
+| Instalar | `npm install` y copiar `.env.example` a `.env` |
+| Base local | `npm run db:start` (Supabase en Docker) |
+| Desarrollo | `npm run dev` (web en :3000 + worker) |
+| Tests | `npm test` (las de integración necesitan `db:start`) |
+| Lint / typecheck / formato | `npm run lint`, `npm run typecheck`, `npm run format:check` |
 
 ## Mapa del repo
 - `docs/` — contexto: qué se construye, por qué y cómo (leer antes de cambios grandes).
 - `.claude/` — reglas, skills y agentes del proyecto.
-- `src/` — código fuente.
+- `src/` — código: `app/` (Next.js), `worker/` (pg-boss), `lib/` (compartido).
+- `supabase/` — config y migraciones de Supabase local.
+- `railway/` — config de despliegue de los servicios web y worker.
+- `AGENTS.md` — lo genera Next.js: esta versión de Next cambia APIs; leer `node_modules/next/dist/docs/` antes de usar una API nueva.
 - `tests/` — pruebas.
 
 ## Cómo trabajamos
