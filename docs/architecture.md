@@ -57,6 +57,30 @@ Supuestos de la estimación:
 
 Para que el agente no invente nada: precio, stock y link de pago **siempre salen de herramientas**. Nunca del texto del modelo.
 
+### 3.1 Capa multi-proveedor (aprobada por el usuario el 2026-11-20)
+
+El agente no queda amarrado a un solo proveedor. Hay una interfaz interna `LLMProvider` (mensajes, herramientas, uso de tokens y costo, todo normalizado) con tres adaptadores:
+
+| Proveedor | SDK | Notas |
+|---|---|---|
+| **Anthropic** | `@anthropic-ai/sdk` (oficial) | Claude directo. *Prompt caching* nativo. Proveedor por defecto |
+| **OpenAI** | `openai` (oficial) | Modelos GPT |
+| **OpenRouter** | `openai` con `baseURL: https://openrouter.ai/api/v1` (compatible con la API de OpenAI) | Da acceso a cientos de modelos (Gemini, Llama, DeepSeek, etc.) con una sola llave. Útil para probar y comparar costos |
+
+Cómo se usa:
+- **Modelo por rol, configurable desde el panel de admin** (se guarda en la base de datos y no hace falta desplegar de nuevo):
+  - `agente_principal`: atiende y vende. Por defecto, Claude Haiku 5.5.
+  - `escalamiento`: turnos difíciles, con un tope de uso.
+  - `utilitario`: tareas baratas como clasificar intención, resumir la conversación para el humano o extraer datos.
+  - `respaldo`: se usa si el proveedor principal falla o devuelve error. Por ejemplo, Anthropic → OpenRouter.
+- **Registro de costo por llamada** (proveedor, modelo, tokens y USD), para comparar modelos con datos reales y cuidar el presupuesto.
+- Las herramientas se definen **una sola vez** con un esquema JSON y cada adaptador las traduce al formato de su proveedor.
+- Las llaves (`ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, `OPENROUTER_API_KEY`) van en variables de entorno, nunca en la base de datos ni en el código.
+
+Cuidados:
+- El *prompt caching*, el razonamiento y el formato de herramientas **cambian de un proveedor a otro**. Cambiar de modelo puede cambiar el costo y la calidad, así que se prueba con las mismas conversaciones antes de pasarlo a producción.
+- OpenRouter envía los datos del cliente a terceros, según el modelo que se elija, y cobra una comisión sobre los créditos. Hay que revisar sus condiciones antes de usarlo en producción.
+
 ## 4. Stack propuesto
 
 | Capa | Tecnología | Por qué |
@@ -65,7 +89,7 @@ Para que el agente no invente nada: precio, stock y link de pago **siempre salen
 | App web | **Next.js** (PWA responsive) | Funciona en computador y celular, y se instala con notificaciones push. Sin app nativa |
 | Base de datos, auth, tiempo real y archivos | **Supabase** (Postgres) | Bandeja en tiempo real, reglas por fila para los roles, almacenamiento de imágenes y audios, y `pg_cron` para tareas programadas |
 | Cola y worker | Worker Node con cola sobre Postgres (pg-boss) | Los webhooks responden de inmediato a Meta y el agente procesa en segundo plano. No hace falta otro servicio pago |
-| IA | **API de Anthropic**: Claude Haiku 5.5 con *tool use* y *prompt caching* | Costo y latencia bajos |
+| IA | **Capa multi-proveedor** (sección 3.1): Anthropic (por defecto, Claude Haiku 5.5), OpenAI y OpenRouter | Costo y latencia bajos. Se cambia de modelo sin desplegar de nuevo y hay respaldo si un proveedor falla |
 | Canales | WhatsApp Cloud API (vía BSP con coexistencia) e Instagram/Messenger Graph API | APIs oficiales, sin riesgo de bloqueo |
 | Comercio | **Shopify Admin GraphQL API** | Catálogo, stock, pedidos borrador e `invoiceUrl` |
 | Hosting | **Railway** (app y worker) | Un proyecto, unos USD 5–20 al mes, admite procesos que se quedan corriendo (el worker) |
@@ -106,5 +130,6 @@ Esto se decide en el Paso 03.
 - Tarifas de WhatsApp: [Meta — Pricing](https://developers.facebook.com/docs/whatsapp/pricing), [Zernio](https://zernio.com/blog/whatsapp-business-api-pricing), [ManyChat](https://help.manychat.com/hc/en-us/articles/14281380243740), [Sent.dm](https://docs.sent.dm/docs/guides/whatsapp-pricing)
 - Coexistencia: [Meta — Onboarding Business App users](https://developers.facebook.com/documentation/business-messaging/whatsapp/embedded-signup/onboarding-business-app-users), [360dialog](https://docs.360dialog.com/docs/resources/phone-numbers/coexistence), [Infobip](https://www.infobip.com/docs/whatsapp/manage-integration/coexistence), [Telnyx](https://developers.telnyx.com/docs/messaging/whatsapp/coexistence)
 - Ventanas de IG y Messenger: [Meta — Messenger/IG policy](https://developers.facebook.com/documentation/business-messaging/messenger-platform/policy), [Meta — Send API](https://developers.facebook.com/docs/messenger-platform/reference/send-api), [Spur — ventana de 7 días](https://www.spurnow.com/es/blogs/instagram-messenger-ads-7-day-messaging-window)
+- OpenRouter: [OpenAI compatibility](https://openrouter.ai/docs/guides/features/compatibility), [Tool calling](https://openrouter.ai/docs/guides/features/tool-calling)
 - Shopify: [draftOrderCreate / invoiceUrl](https://shopify.dev/docs/api/admin-graphql/2026-01/queries/draftOrder)
 - Precios de Claude: tabla del skill oficial de la API de Anthropic (consultada el 2026-11-20)
