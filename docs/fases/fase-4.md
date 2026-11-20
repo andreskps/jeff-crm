@@ -24,3 +24,9 @@ Definir las piezas, los datos, las reglas y los permisos del CRM, y la interfaz.
 - Logo y colores de la marca.
 - Tarifas oficiales de plantillas de Meta para Colombia; API de EFFI (versión 2); quién mantiene el sistema.
 - Plan de migración del número de WhatsApp (Paso 05).
+
+## Revisión de diseño visual (2026-11-20)
+- `docs/design.md` reescrito con dirección **monocroma** (blanco y negro), basada en dos referencias de CRM del usuario y en la marca de jeffshoes.net: Inter, `#1C1C1C` sobre `#FFFEFC`, botón primario en píldora, etiquetas en mayúsculas espaciadas, logo circular.
+- Se definieron tokens (claro y oscuro), tipografía, radios, sombras, shell con sidebar, pantallas (Inicio con KPI y pipeline kanban, Bandeja de 3 paneles con tarjeta de pedido embebida, Seguimientos, Pedidos, Clientes, Configuración, Reportes), componentes (shadcn/ui), celular y accesibilidad.
+- Alcance: Inicio con KPI y pipeline entra en E1 (fase 12) porque solo lee datos existentes; pantallas de Pedidos y Clientes de solo lectura.
+- Validación: marca revisada en vivo (estilos calculados: Inter, `rgb(28,28,28)` y `rgb(255,254,252)`; tema Prestige).
