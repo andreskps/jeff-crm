@@ -215,4 +215,5 @@ Se construyen con **shadcn/ui** (Radix + Tailwind), que da accesibilidad y tecla
 
 ## 9. Pendientes
 - [ ] Logo de Jeff en **SVG** (o PNG blanco) para el modo oscuro y el favicon.
-- [ ] Prototipo visual (HTML) de Inicio y Bandeja para validarlo antes de la fase 12.
+- [x] Prototipo visual de Inicio, Bandeja y chat en el celular: [Jeff CRM — Prototipo](https://claude.ai/artifact/SiZfSyi6NYE83ud3GAonjp) (2026-11-20, datos de ejemplo). Falta que el usuario lo valide.
+- [ ] Tokens de texto para estados, usados en el prototipo para cumplir el contraste AA: `--ok #156B3A`, `--warn #7E4C00`, `--bad #B42323`, `--info #2A55B0` sobre fondos tenues (`#E3F3EA`, `#FBF0DC`, `#FBE7E7`, `#E6EDFB`). Pasarlos a la tabla de §3 cuando se apruebe el prototipo.
