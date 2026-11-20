@@ -6,7 +6,7 @@
 CRM propio para un negocio de productos físicos (Colombia) que centraliza WhatsApp, Instagram y Messenger; un agente de IA vende de punta a punta, hace seguimientos y pasa a humano cuando hace falta. Ver [docs/project.md](docs/project.md).
 
 ## Stack
-Aprobado: TypeScript, Next.js (PWA), Supabase, worker con pg-boss, Railway; IA multi-proveedor (Anthropic por defecto con Claude Haiku 5.5, OpenAI, OpenRouter); Shopify Admin API; WhatsApp Cloud API (coexistencia vía BSP), IG/Messenger Graph API. Ver [docs/architecture.md](docs/architecture.md).
+Aprobado: TypeScript, Next.js (PWA), Supabase, worker con pg-boss, Railway; IA multi-proveedor (Anthropic por defecto con Claude Haiku 5.5, OpenAI, OpenRouter); Shopify Admin API; WhatsApp Cloud API (directo de Meta, sin BSP), IG/Messenger Graph API. Ver [docs/architecture.md](docs/architecture.md).
 
 ## Comandos
 | Acción | Comando |
