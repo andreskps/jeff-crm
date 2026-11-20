@@ -93,11 +93,11 @@ _Las metas numéricas (por ejemplo, "primera respuesta en menos de 1 minuto") se
 
 ## Preguntas abiertas
 - [ ] ¿EFFI tiene API o algún modo de importación (webhooks, CSV)? ¿Quién es el contacto técnico?
-- [ ] ¿Cómo se identifica a un mayorista? ¿Por monto, por cantidad o porque ya está marcado como cliente mayorista?
-- [ ] ¿Cuál es el monto a partir del cual una venta se considera "grande" y pasa a humano?
-- [ ] ¿Horarios del equipo humano? ¿Qué hace la IA si pide un humano y no hay nadie conectado?
-- [ ] ¿Nombre y personalidad del agente de IA? ¿Tono de marca?
-- [ ] ¿Con qué datos se entrena la IA: catálogo de Shopify, preguntas frecuentes, políticas de envío, cambios y garantías?
+- [x] ¿Cómo se identifica a un mayorista? → por unidades, por monto o porque el cliente lo dice; umbrales configurables (RF-21).
+- [x] ¿Monto de venta grande? → configurable desde el panel (RF-21).
+- [x] ¿Horarios y qué pasa sin humanos? → horario configurable; fuera de horario la IA avisa y deja en cola (RF-24).
+- [x] ¿Nombre y tono del agente? → configurables (RF-14).
+- [x] ¿Con qué datos aprende la IA? → catálogo de Shopify, preguntas frecuentes y políticas (RF-13).
 - [ ] ¿Qué transportadora usan y cómo se obtiene el número de guía para avisar el estado del envío?
-- [ ] ¿Se migra el historial de chats actual o se arranca de cero?
-- [ ] ¿Quién va a mantener el sistema y dónde se aloja?
+- [x] ¿Migración? → se arranca de cero; solo se importan los clientes de Shopify (RNF-07).
+- [x] ¿Dónde se aloja? → Railway + Supabase (architecture.md). Pendiente: quién lo mantiene.
