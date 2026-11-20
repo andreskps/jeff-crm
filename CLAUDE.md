@@ -3,7 +3,7 @@
 > Memoria del proyecto: lo primero que Claude lee en cada sesión. Mantenerlo corto y actualizado.
 
 ## Qué es
-_Pendiente: descripción en 2–3 líneas de qué se construye y para quién._ Ver [docs/project.md](docs/project.md).
+CRM propio para un negocio de productos físicos (Colombia) que centraliza WhatsApp, Instagram y Messenger; un agente de IA vende de punta a punta, hace seguimientos y pasa a humano cuando hace falta. Ver [docs/project.md](docs/project.md).
 
 ## Stack
 _Pendiente de definir._ Ver [docs/architecture.md](docs/architecture.md).
